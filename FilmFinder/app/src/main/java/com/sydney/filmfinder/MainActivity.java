@@ -1,24 +1,37 @@
 package com.sydney.filmfinder;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
-    private Button buttonToLogin;
+    private EditText searchEditText;
+    private Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search);
 
-        buttonToLogin = findViewById(R.id.buttonToLogin);
+        searchEditText = findViewById(R.id.searchEditText);
+        searchButton = findViewById(R.id.searchButton);
 
-        buttonToLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(intent);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = searchEditText.getText().toString().trim();
+
+                if (!query.isEmpty()) {
+                    // Handle the search logic here
+                    Toast.makeText(MainActivity.this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Please enter a search query.", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
     }
 }
