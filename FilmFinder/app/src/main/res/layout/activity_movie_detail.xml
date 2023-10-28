@@ -4,25 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    tools:context=".MovieDetailActivity">
 
-    <EditText
-        android:id="@+id/searchEditText"
+    <TextView
+        android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter movie title"
-        android:inputType="text"
-        android:padding="10dp"
-        android:layout_marginBottom="16dp" />
+        android:text="Title"
+        android:textSize="24sp"
+        android:paddingBottom="8dp"
+        android:fontFamily="sans-serif-medium"/>
 
-    <Button
-        android:id="@+id/searchButton"
+    <TextView
+        android:id="@+id/ratingTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:padding="10dp" />
+        android:text="Rating"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif"/>
+
+    <!-- You can add more views here to display other movie details -->
 
 </LinearLayout>
