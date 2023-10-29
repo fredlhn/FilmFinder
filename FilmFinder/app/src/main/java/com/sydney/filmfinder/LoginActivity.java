@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void navigateToMainPage() {
         // Replace MainPageActivity.class with the name of your main activity class
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, SearchActivity.class);
         startActivity(intent);
         finish(); // Close the LoginActivity after navigating to MainPageActivity
     }

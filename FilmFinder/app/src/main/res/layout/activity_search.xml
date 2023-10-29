@@ -23,5 +23,10 @@
         android:layout_below="@+id/searchEditText"
         android:layout_marginTop="12dp"
         android:layout_centerHorizontal="true" />
+		
+	<ListView
+		android:id="@+id/moviesListView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
 
 </RelativeLayout>
