@@ -1,4 +1,4 @@
-package com.sydney.filmfinder;
+package com.sydney.filmfinder.Activity;
 
 
 import android.app.Activity;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.sydney.filmfinder.R;
 
 public class RegisterActivity extends Activity {
 
@@ -49,7 +50,6 @@ public class RegisterActivity extends Activity {
         textViewLoginPrompt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirect to Login Activity (assuming you have LoginActivity class)
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
@@ -63,7 +63,7 @@ public class RegisterActivity extends Activity {
                         // Registration successful
                         FirebaseUser user = mAuth.getCurrentUser();
                         Toast.makeText(RegisterActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                        // Redirect to your main activity or dashboard
+                        // Redirect to main activity
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

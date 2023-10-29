@@ -1,4 +1,4 @@
-package com.sydney.filmfinder;
+package com.sydney.filmfinder.Activity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.sydney.filmfinder.R;
 
 public class LoginActivity extends AppCompatActivity {
 

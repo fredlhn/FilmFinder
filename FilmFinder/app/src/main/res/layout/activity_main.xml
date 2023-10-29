@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".MainActivity">
-
-    <EditText
-        android:id="@+id/searchEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your query here"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:inputType="text" />
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
     <Button
-        android:id="@+id/searchButton"
+        android:id="@+id/btnSearchActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:layout_below="@+id/searchEditText"
-        android:layout_marginTop="12dp"
-        android:layout_centerHorizontal="true" />
+        android:text="Go to Search Activity"
+        android:layout_marginBottom="16dp"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnAIRecommendActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to AI Recommend Activity"/>
+
+</LinearLayout>
