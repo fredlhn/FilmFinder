@@ -2,19 +2,33 @@ package com.sydney.filmfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+
+import com.algolia.search.saas.Client;
+import com.algolia.search.saas.Query;
+import com.algolia.search.saas.Index;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText searchEditText;
-    private Button searchButton;
+
+    // Algolia
+    private static final String ALGOLIA_APP_ID = "FXHWCT3O4N";
+    private static final String ALGOLIA_SEARCH_KEY = "68a5472b28853764b5842bced7c01242";
+    private static final String ALGOLIA_INDEX_NAME = "FilmFinder";
+    private Client mClient;
+    private Index mIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +36,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         searchEditText = findViewById(R.id.searchEditText);
-        searchButton = findViewById(R.id.searchButton);
+        Button searchButton = findViewById(R.id.searchButton);
+
+        mClient = new Client(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
+        mIndex = mClient.getIndex(ALGOLIA_INDEX_NAME);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String query = searchEditText.getText().toString().trim();
+                String query = searchEditText.getText().toString().trim().toLowerCase(); // Considering case insensitivity
                 if (!query.isEmpty()) {
                     searchForMovie(query);
                 } else {
@@ -37,32 +54,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void searchForMovie(String title) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("movies")
-                .whereEqualTo("title", title)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        ArrayList<Movie> movies = new ArrayList<>();
-                        task.getResult().forEach(document -> {
-                            String id = document.getId();
-                            String movieTitle = document.getString("title");
-                            double rating = document.getDouble("rating");
-                            movies.add(new Movie(id, movieTitle, rating));
-                        });
+    private void searchForMovie(String queryText) {
+        Query query = new Query(queryText);
+        mIndex.searchAsync(query, (content, error) -> {
+            if (error == null) {
+                JSONArray hits = content.optJSONArray("hits");
+                ArrayList<Movie> movies = new ArrayList<>();
 
-                        if (movies.size() > 0) {
-                            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-                            intent.putExtra("movies", movies);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(MainActivity.this, "No movies found.", Toast.LENGTH_SHORT).show();
+                if (hits != null) {
+                    for (int i = 0; i < hits.length(); i++) {
+                        JSONObject hit = hits.optJSONObject(i);
+                        if (hit != null) {
+                            String id = hit.optString("objectID");
+                            String title = hit.optString("Title");
+                            double rating = hit.optDouble("Rating");
+                            Log.d("movie",id+"\n"+title);
+                            movies.add(new Movie(id, title, rating));
                         }
-
-                    } else {
-                        Toast.makeText(MainActivity.this, "Error searching. Please try again.", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
+
+                if (movies.size() > 0) {
+                    Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                    intent.putExtra("movies", movies);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, "No movies found.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(MainActivity.this, "Error searching. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

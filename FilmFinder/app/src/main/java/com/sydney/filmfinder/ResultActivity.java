@@ -24,7 +24,10 @@ public class ResultActivity extends AppCompatActivity {
 
         movies = (ArrayList<Movie>) getIntent().getSerializableExtra("movies");
 
-        ArrayAdapter<Movie> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
+//        ArrayAdapter<Movie> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
+
+        MovieAdapter adapter = new MovieAdapter(this, movies);
+
         moviesListView.setAdapter(adapter);
 
         moviesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
