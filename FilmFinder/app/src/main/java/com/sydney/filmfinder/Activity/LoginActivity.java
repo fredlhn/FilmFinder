@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login); // Assuming this XML layout name is activity_login.xml
+        setContentView(R.layout.activity_login);
         firebaseAuth = FirebaseAuth.getInstance();
 
         emailEditText = findViewById(R.id.emailEditText);
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if the user is already logged in
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
-            navigateToMainPage(); // This is a method you can create to navigate to the main page/activity
+            navigateToMainPage();
         }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -68,10 +68,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void navigateToMainPage() {
-        // Replace MainPageActivity.class with the name of your main activity class
-        Intent intent = new Intent(LoginActivity.this, SearchActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
-        finish(); // Close the LoginActivity after navigating to MainPageActivity
+        finish();
     }
 }
 

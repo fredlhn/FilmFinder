@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.algolia.search.saas.Client;
 import com.algolia.search.saas.Query;
 import com.algolia.search.saas.Index;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import com.sydney.filmfinder.Class.Movie;
 import com.sydney.filmfinder.R;
 
@@ -56,7 +56,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
 //        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 //            switch (item.getItemId()) {

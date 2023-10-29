@@ -11,8 +11,9 @@ import retrofit2.http.POST;
 
 public interface OpenAIApi {
 
-    @POST("/v1/completions")  // Replace 'path_to_endpoint' with the appropriate endpoint for fetching recommendations.
+    @POST("completions")
     Call<MovieRecommendationResponse> getMovieRecommendation(
+            @Header("Content-Type") String contentType,
             @Header("Authorization") String apiKey,
             @Body MovieRecommendationRequest request
     );

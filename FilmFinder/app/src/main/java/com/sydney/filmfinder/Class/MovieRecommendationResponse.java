@@ -1,15 +1,21 @@
 package com.sydney.filmfinder.Class;
 
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class MovieRecommendationResponse {
-    private String recommendedMovieTitle;
+    @SerializedName("id")
+    private String id;
 
-    public String getRecommendedMovieTitle() {
-        return recommendedMovieTitle;
-    }
+    @SerializedName("choices")
+    private List<Choice> choices;
 
-    public void setRecommendedMovieTitle(String recommendedMovieTitle) {
-        this.recommendedMovieTitle = recommendedMovieTitle;
+    public String getCompletionText() {
+        if (choices != null && !choices.isEmpty()) {
+            return choices.get(0).getText().trim();  // trim() to remove any leading or trailing newlines or spaces
+        }
+        return null;
     }
 }
