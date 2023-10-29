@@ -114,4 +114,31 @@ public class Movie {
     public void setYouTubeTrailer(String youTubeTrailer) {
         YouTubeTrailer = youTubeTrailer;
     }
+
+    @Override
+    public String toString() {
+        return this.Title;
+    }
+
+    public String getDetailsAsString() {
+        StringBuilder details = new StringBuilder();
+
+        details.append("Title: ").append(Title).append("\n");
+        details.append("Director: ").append(Director).append("\n");
+        details.append("Rating: ").append(Rating).append("\n");
+        details.append("Runtime: ").append(Runtime).append("\n");
+        details.append("Year: ").append(Year).append("\n");
+        details.append("Cast: ").append(Cast).append("\n");
+        details.append("Writers: ").append(Writers).append("\n");
+        details.append("Short Summary: ").append(ShortSummary).append("\n");
+        details.append("Summary: ").append(Summary).append("\n");
+        details.append("IMDB ID: ").append(IMDB_ID).append("\n");
+        details.append("YouTube Trailer: ").append(YouTubeTrailer).append("\n");
+
+        // details.append("Movie Poster URL: ").append(MoviePoster).append("\n");
+
+        return details.toString();
+    }
+
+
 }

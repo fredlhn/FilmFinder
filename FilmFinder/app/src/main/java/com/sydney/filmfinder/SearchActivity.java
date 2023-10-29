@@ -18,8 +18,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -108,7 +111,11 @@ public class SearchActivity extends AppCompatActivity {
 
                 try (Response response = client.newCall(request).execute()) {
                     JSONObject responseBody = new JSONObject(response.body().string());
-                    List<String> titles = Arrays.asList(responseBody.getString("titles").split(",")); // Assuming titles are comma-separated
+                    JSONArray titlesArray = responseBody.getJSONArray("refinedQuery");  // Parsing the "refinedQuery" key
+                    List<String> titles = new ArrayList<>();
+                    for (int i = 0; i < titlesArray.length(); i++) {
+                        titles.add(titlesArray.getString(i));
+                    }
                     Log.d("SearchActivity", "Received refined titles: " + titles);
                     if (callback != null) {
                         runOnUiThread(() -> {
@@ -132,6 +139,8 @@ public class SearchActivity extends AppCompatActivity {
         }).start();
     }
 
+
+
     private void displayMovies(List<Movie> movies) {
         if (moviesAdapter == null) {
             moviesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
@@ -147,43 +156,11 @@ public class SearchActivity extends AppCompatActivity {
         void onResult(T result);
     }
 
-    public static Map<String, String> parseRefinedQuery(String jsonString) {
-        Map<String, String> resultMap = new HashMap<>();
-
-        try {
-            JSONObject jsonObject = new JSONObject(jsonString);
-
-            // Extracting collection name
-            if (jsonObject.has("collection_name")) {
-                resultMap.put("collection", jsonObject.getString("collection_name"));
-            }
-
-            // Extracting field
-            if (jsonObject.has("field")) {
-                resultMap.put("field", jsonObject.getString("field"));
-            }
-
-            // Extracting operator
-            if (jsonObject.has("operator")) {
-                resultMap.put("operator", jsonObject.getString("operator"));
-            }
-
-            // Extracting value
-            if (jsonObject.has("value")) {
-                resultMap.put("value", jsonObject.getString("value"));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return resultMap;
-    }
     public Query createFirestoreQuery(List<String> titles) {
         CollectionReference collectionRef = db.collection("movies"); // Assuming the collection name is "movies"
 
         // Use the "in" operator in Firestore to match the movie titles
-        Query firestoreQuery = collectionRef.whereIn("title", titles);
+        Query firestoreQuery = collectionRef.whereIn("Title", titles);
 
         return firestoreQuery;
     }
