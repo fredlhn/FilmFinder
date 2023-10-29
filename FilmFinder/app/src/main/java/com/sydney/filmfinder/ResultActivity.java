@@ -2,9 +2,9 @@ package com.sydney.filmfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +24,7 @@ public class ResultActivity extends AppCompatActivity {
 
         movies = (ArrayList<Movie>) getIntent().getSerializableExtra("movies");
 
-//        ArrayAdapter<Movie> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
-
         MovieAdapter adapter = new MovieAdapter(this, movies);
-
         moviesListView.setAdapter(adapter);
 
         moviesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -39,5 +36,21 @@ public class ResultActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
