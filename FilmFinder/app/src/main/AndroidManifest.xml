@@ -3,6 +3,7 @@
 
     <!-- Add storage read permission -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -27,10 +28,13 @@
         <activity android:name=".Activity.RegisterActivity"></activity>
         <activity android:name=".Activity.ResultActivity"></activity>
         <activity android:name=".Activity.MovieDetailActivity"></activity>
+        <activity android:name=".Activity.AIRecommendActivity"></activity>
+        <activity android:name=".Activity.SearchActivity"></activity>
 
 
 
-        <!-- Declare other activities here, if you have any -->
+
+    <!-- Declare other activities here, if you have any -->
 
     </application>
 </manifest>

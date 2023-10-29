@@ -6,10 +6,10 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/etKeywords"
+        android:id="@+id/userInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter keywords"
+        android:hint="Enter Description"
         android:layout_centerInParent="true"/>
 
     <Button
@@ -17,12 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get Recommendation"
-        android:layout_below="@id/etKeywords"
+        android:layout_below="@id/userInput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
     <TextView
-        android:id="@+id/tvMovieRecommendation"
+        android:id="@+id/MovieRecommendation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
