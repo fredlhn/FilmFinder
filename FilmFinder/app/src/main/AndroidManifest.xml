@@ -15,18 +15,18 @@
         android:theme="@style/Theme.FilmFinder">
 
 
-        <activity android:name=".LoginActivity" android:exported="true">
+        <activity android:name=".Activity.LoginActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".UploadCsvActivity" android:exported="true"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".MovieDetailActivity"></activity>
+        <activity android:name=".Activity.UploadCsvActivity" android:exported="true"></activity>
+        <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.RegisterActivity"></activity>
+        <activity android:name=".Activity.ResultActivity"></activity>
+        <activity android:name=".Activity.MovieDetailActivity"></activity>
 
 
 

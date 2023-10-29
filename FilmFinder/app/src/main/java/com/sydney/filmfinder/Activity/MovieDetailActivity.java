@@ -1,9 +1,12 @@
-package com.sydney.filmfinder;
+package com.sydney.filmfinder.Activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.sydney.filmfinder.Class.Movie;
+import com.sydney.filmfinder.R;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
@@ -24,7 +27,7 @@ public class MovieDetailActivity extends AppCompatActivity {
             titleTextView.setText(selectedMovie.getTitle());
             ratingTextView.setText("Rating: " + selectedMovie.getRating() + "/10");
         }
-        
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }

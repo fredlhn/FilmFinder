@@ -1,4 +1,4 @@
-package com.sydney.filmfinder;
+package com.sydney.filmfinder.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,13 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.algolia.search.saas.Client;
 import com.algolia.search.saas.Query;
 import com.algolia.search.saas.Index;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sydney.filmfinder.Class.Movie;
+import com.sydney.filmfinder.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     private EditText searchEditText;
 
@@ -48,10 +51,27 @@ public class MainActivity extends AppCompatActivity {
                 if (!query.isEmpty()) {
                     searchForMovie(query);
                 } else {
-                    Toast.makeText(MainActivity.this, "Please enter a search query.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "Please enter a search query.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.navigation_home:
+//                    startActivity(new Intent(this, MainActivity.class));
+//                    break;
+//                case R.id.navigation_results:
+//                    startActivity(new Intent(this, ResultActivity.class));
+//                    break;
+//                case R.id.navigation_details:
+//                    startActivity(new Intent(this, MovieDetailActivity.class));
+//                    break;
+//            }
+//            return true;
+//        });
     }
 
     private void searchForMovie(String queryText) {
@@ -75,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (movies.size() > 0) {
-                    Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                    Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
                     intent.putExtra("movies", movies);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(MainActivity.this, "No movies found.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "No movies found.", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(MainActivity.this, "Error searching. Please try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchActivity.this, "Error searching. Please try again.", Toast.LENGTH_SHORT).show();
             }
         });
     }

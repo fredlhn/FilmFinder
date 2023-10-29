@@ -1,4 +1,4 @@
-package com.sydney.filmfinder;
+package com.sydney.filmfinder.Class;
 
 import java.io.Serializable;
 

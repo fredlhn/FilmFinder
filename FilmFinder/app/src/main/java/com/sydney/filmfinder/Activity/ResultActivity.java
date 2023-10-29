@@ -1,4 +1,4 @@
-package com.sydney.filmfinder;
+package com.sydney.filmfinder.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.sydney.filmfinder.Class.Movie;
+import com.sydney.filmfinder.Adapter.MovieAdapter;
+import com.sydney.filmfinder.R;
+
 import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {

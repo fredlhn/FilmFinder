@@ -1,4 +1,4 @@
-package com.sydney.filmfinder;
+package com.sydney.filmfinder.Activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.opencsv.CSVReader;
+import com.sydney.filmfinder.R;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
