@@ -125,10 +125,24 @@ public class AIRecommendActivity extends AppCompatActivity {
                         JSONObject hit = hits.optJSONObject(i);
                         if (hit != null) {
                             String id = hit.optString("objectID");
-                            String title = hit.optString("Title");
+                            String movieTitle = hit.optString("Title");
+
                             double rating = hit.optDouble("Rating");
-                            Log.d("movie",id+"\n"+title);
-                            movies.add(new Movie(id, title, rating));
+                            String cast = hit.optString("Cast");
+                            String director = hit.optString("Director");
+                            String imdbId = hit.optString("IMDB_ID");
+                            String moviePoster = hit.optString("MoviePoster");
+                            String ratingString = hit.optString("Rating");
+                            String runtime = hit.optString("Runtime");
+                            String shortSummary = hit.optString("ShortSummary");
+                            String summary = hit.optString("Summary");
+                            String writers = hit.optString("Writers");
+                            String year = hit.optString("Year");
+                            String youTubeTrailer = hit.optString("YouTubeTrailer");
+
+                            Movie movie = new Movie(id, movieTitle, rating, cast, director, imdbId, moviePoster, ratingString,
+                                    runtime, shortSummary, summary, writers, year, youTubeTrailer);
+                            movies.add(movie);
                         }
                     }
                 }

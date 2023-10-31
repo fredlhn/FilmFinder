@@ -42,6 +42,7 @@ app.use(bodyParser.json());
 
 // Endpoint to refine search with GPT
 app.post('/refine-search', async (req, res) => {
+    console.log("Flag");
     const query = req.body.query;
     try {
 
@@ -63,8 +64,13 @@ app.post('/refine-search', async (req, res) => {
         });
         
         var refinedQuery = completion.choices[0].message.content.trim();
-        refinedQuery = refinedQuery.split(";");
-        res.json({ refinedQuery });
+        var splitResult = refinedQuery.split("; ");
+
+        if (splitResult.length == 1) {
+            splitResult = refinedQuery.split(";");
+        }
+        
+        res.json({ splitResult });
 
     } catch (error) {
         console.log(error);
