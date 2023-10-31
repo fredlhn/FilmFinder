@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSearchActivity;
     private Button btnAIRecommendActivity;
 
+    private Button btnAIQueryActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnSearchActivity = findViewById(R.id.btnSearchActivity);
         btnAIRecommendActivity = findViewById(R.id.btnAIRecommendActivity);
+        btnAIQueryActivity = findViewById(R.id.btnAIQueryActivity);
+
 
         btnSearchActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent aiRecommendIntent = new Intent(MainActivity.this, AIRecommendActivity.class);
                 startActivity(aiRecommendIntent);
+            }
+        });
+
+        btnAIQueryActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent aiQueryIntent = new Intent(MainActivity.this, AIQueryActivity.class);
+                startActivity(aiQueryIntent);
             }
         });
     }

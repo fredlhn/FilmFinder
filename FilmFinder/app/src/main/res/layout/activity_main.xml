@@ -18,6 +18,13 @@
         android:id="@+id/btnAIRecommendActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Go to AI Recommend Activity"/>
+        android:text="Go to AI Recommend Activity"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnAIQueryActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to AI Query Activity"/>
 
 </LinearLayout>
